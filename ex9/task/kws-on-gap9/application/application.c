@@ -494,7 +494,7 @@ void compute_mfcc(){
 
 int application(){
 
-    printf ("----------------------------- Initializing environment ---------------------------\n");
+    // printf ("----------------------------- Initializing environment ---------------------------\n");
 
     // Voltage-Frequency settings
     uint32_t voltage =VOLTAGE;
@@ -543,7 +543,7 @@ int application(){
         PRINTF("Cluster open failed !\n");
         pmsis_exit(-4);
     }
-    printf("Cluster Opened\n");
+    // printf("Cluster Opened\n");
     pi_freq_set(PI_FREQ_DOMAIN_CL, FREQ_CL*1000*1000);
 
 
@@ -556,14 +556,14 @@ int application(){
     pi_gpio_pin_configure(gpio_boot_pin_1, flags_upb);
 
 
-    printf ("----------------------------- Initializing backbone ---------------------------\n");
+    // printf ("----------------------------- Initializing backbone ---------------------------\n");
 
     // Dory init
     mem_init();
     network_initialize(); // Absent in L2-only
     pi_cluster_close(&cluster_dev);
 
-    printf ("----------------------------- Read WAV from filesystem ---------------------------\n");
+    // printf ("----------------------------- Read WAV from filesystem ---------------------------\n");
     L3_wavs = ram_malloc(WAVRAM);
     printf("\nL3_wavs alloc initial\t@ %d:\t%s\n", (unsigned int)L3_wavs, L3_wavs?"Ok":"Failed");
 
@@ -581,7 +581,7 @@ int application(){
         pmsis_exit(1);
     }
 
-    printf ("----------------------------- Write WAV to RAM ---------------------------\n");
+    // printf ("----------------------------- Write WAV to RAM ---------------------------\n");
     ram_write(L3_wavs, inWav, AUDIO_BUFFER_SIZE*sizeof(short));
     pi_l2_free(inWav, AUDIO_BUFFER_SIZE*sizeof(short));
 
@@ -809,12 +809,12 @@ int application(){
         int n_classes = 12;
         predict(l2_buffer, n_classes);
 
-        #ifdef PERF
+        // #ifdef PERF
         // Saving .wav is slow and will affect sampling
         dump_wav_open("utterance.wav", 16, 16000, 1, sizeof(int16_t) * AUDIO_BUFFER_SIZE);
         dump_wav_write(MfccInSig_int16, sizeof(int16_t) * AUDIO_BUFFER_SIZE);
         dump_wav_close();        
-        #endif
+        // #endif
 
         pi_l2_free(MfccInSig_int16, sizeof(int16_t) * AUDIO_BUFFER_SIZE);        
         
