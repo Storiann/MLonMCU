@@ -19,8 +19,7 @@ export GAP_RISCV_GCC_TOOLCHAIN=/home/osboxes/gap_riscv_toolchain_ubuntu
 
 source /home/osboxes/gap_sdk_private/sourceme.sh
 
-export WAV_FILE=/home/osboxes/mlonmcu_libs/right_94de6a6a_nohash_4.wav # ORIGINAL
-export WAV_FILE=/home/osboxes/mlonmcu_libs/yes_b528edb3_nohash_0.wav
+export WAV_FILE=/home/osboxes/kws-on-gap9/left_b528edb3_nohash_0.wav
 
 cd application/
 

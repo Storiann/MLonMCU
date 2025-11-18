@@ -59,7 +59,7 @@
         "denoisify": 0,
         "reverb": "false",
         "reverb_mode": "training_only",
-        "pretrained_directory": "experiments/iotj24/inputsize_noiseless_asymkernel_sympad/dscnns_20x5_10_1/nakws/DSCNN_OMEETING_2024_02_21_15_35_59/",
+        "pretrained_directory": "",
         "epochs":60,
         "batch_size":128,
         "loss": "crossentropy",
@@ -92,8 +92,8 @@
         "selection_interval_lower": 0,
         "selection_method": "random",
         "target_noise":["OMEETING"],
-        "base_path":"/usr/scratch/wetterhorn/cioflanc/odda-for-kws/",
-        "model_path": "/usr/scratch/wetterhorn/cioflanc/odda-for-kws/models/example/"
+        "base_path":"",
+        "model_path": ""
     }
 
 }
