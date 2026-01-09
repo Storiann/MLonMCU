@@ -8,6 +8,14 @@ It is thus natural to aim to also perform keyword spotting at the extreme edge, 
 Consider a Depthwise-Separable Convolutional Neural Network (DS-CNN) that you pretrained on a KWS dataset such as Google Speech Commands. 
 In this tutorial we will understand the main steps required to use the pretrained network to process a 1-second input acquired on-board and to classify the utterance.
 
+## DEMO
+
+To classify a recording (.wav) using a pretrained model, run
+```
+python test.py --pretrained model.pth --input input.wav
+```
+
+
 ## Quantization
 
 We will employ quantlib for this purpose.
