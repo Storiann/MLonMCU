@@ -8,14 +8,20 @@ It is thus natural to aim to also perform keyword spotting at the extreme edge, 
 Consider a Depthwise-Separable Convolutional Neural Network (DS-CNN) that you pretrained on a KWS dataset such as Google Speech Commands. 
 In this tutorial we will understand the main steps required to use the pretrained network to process a 1-second input acquired on-board and to classify the utterance.
 
+## DEMO
+
+To classify a recording (.wav) using a pretrained model, run
+```
+python test.py --pretrained model.pth --input input.wav
+```
+
+
 ## Quantization
 
 We will employ quantlib for this purpose.
 
 ```
 python quantize.py --net DSCNN --fix_channels --word_align_channels --clip_inputs
-
-python quantize_victor.py # more mature
 ```
 
 We obtain a quantized model, saved in .onnx format, together with the per-layer activations. A configuration file, required for hardware deployment, is additionally generated. You can find the files in `export/`.
@@ -58,12 +64,13 @@ The application reads an input, computes the MFCCs, then performs inference. The
 - [x] Implement on-board inference. Maybe change debugger.
 - [x] Add pretrained network.
 - [x] Tested backbone inference and classification with Gapmod 2.0 on EVK board 3.1.
-- [ ] Fix quantization accuracy drop.
+- [x] Fix quantization accuracy drop.
 - [x] Fix data acquision on EVK board 3.1. 
 - [x] Fix .wav saving with release v5.17.0 of GAP SDK.
-- [ ] Create VM Ubuntu 22.04 with preinstalled GAP SDK v5.17.0, the current repository, and (some) keyword spotting data for quantization calibration and validation.
-- [ ] Improve README.
-- [ ] Add student tasks. 
+- [x] Create VM Ubuntu 22.04 with preinstalled GAP SDK v5.17.0, the current repository, and (some) keyword spotting data for quantization calibration and validation.
+- [x] Improve README.
+- [x] Add student tasks. 
+- [ ] Fix C MFCC computation using torchaudio parameters. Alternative: TensorFlow in VM. 
 
 ## Dependencies
 ### Gapmod 1.0 with EVK board 1.2

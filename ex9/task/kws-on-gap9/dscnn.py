@@ -322,4 +322,3 @@ class DSCNN_block(torch.nn.Module):
             print ("Sum: ", str(torch.sum(x.int())))
 
         return x
-
