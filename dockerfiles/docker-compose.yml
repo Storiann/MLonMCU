@@ -12,5 +12,5 @@ services:
     ports:
       - "8888:8888" # Jupyter Lab on localhost:8888
     volumes:
-      - ./workspace:/workspace # your notebooks live here
+      - ..:/workspace # mount repo root directly as workspace
     restart: unless-stopped

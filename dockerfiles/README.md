@@ -1,14 +1,10 @@
-
-
 # ML on MCU — Docker + Jupyter Quick Start
 
 This guide shows how to set up a clean Docker environment to run Jupyter (Notebook/Lab) for the **MLonMCU** exercises.
 
-
 ---
 
 ## 1) Clone the Repository
-
 
 The structure should look like this:
 
@@ -30,9 +26,8 @@ MLonMCU/
 ## 2) Install Docker (If you do not have it)
 
 1. Download and install **Docker Desktop** for your OS:
-
-   * Windows / macOS: install Docker Desktop and complete the setup.
-   * Linux: install Docker Engine and Docker Compose v2 via your distro’s package manager.
+   - Windows / macOS: install Docker Desktop and complete the setup.
+   - Linux: install Docker Engine and Docker Compose v2 via your distro’s package manager.
 
 2. Start Docker Desktop (or the Docker daemon on Linux).
    You should see an “Engine running” / “Docker is running” indicator in the app.
@@ -80,37 +75,24 @@ http://localhost:8888
 
 …and paste the displayed token if Jupyter asks for it.
 
-
 ---
 
-## 5) Working with the `workspace` Folder
+## 5) Working with the Exercises
 
-Inside Jupyter, you’ll see a folder named **`workspace`**. This is the working directory for your notebooks and files.
-
-You have two options:
-
-* **Option A:** Keep the exercises where they are and just open notebooks from there.
-* **Option B (recommended for simplicity):** Move the exercise folders into `workspace`:
-
-  From **inside** `MLonMCU/dockerfiles` (host terminal):
-
-  ```bash
-  mv ../ex* workspace
-  ```
-
-  Then refresh Jupyter: the exercise folders will appear under `workspace/`.
+The entire `MLonMCU` repository is mounted directly into the container as `/workspace`. When you open Jupyter you will see all exercise folders (`ex1`, `ex2`, …) immediately.
 
 ---
 
 ## 6) Stopping and Restarting
 
-* Stop (in the same terminal): press **Ctrl + C**.
-* Cleanly shut down:
+- Stop (in the same terminal): press **Ctrl + C**.
+- Cleanly shut down:
 
   ```bash
   docker compose down
   ```
-* Start again later:
+
+- Start again later:
 
   ```bash
   docker compose up
@@ -120,25 +102,21 @@ You have two options:
 
 ## 7) Troubleshooting & Tips
 
-* **Port already in use (8888):**
+- **Port already in use (8888):**
   Change the left side of the port mapping in `docker-compose.yml` (e.g., `8890:8888`), then:
 
   ```bash
   docker compose down
   docker compose up
   ```
-* **Cannot see `workspace` updates:**
-  Refresh the Jupyter page. If you moved files on the host while Jupyter was open, a refresh helps.
-* **Permissions issues on Linux/macOS:**
+
+- **Cannot see file updates:**
+  Refresh the Jupyter page. If you changed files on the host while Jupyter was open, a refresh helps.
+- **Permissions issues on Linux/macOS:**
   The compose file usually maps your host user ID automatically. If files appear as root-owned, rebuild with your UID or adjust the compose `user`/`args` settings as needed. For permission issues, please try `sudo`.
-* **Rebuild after changing requirements:**
+- **Rebuild after changing requirements:**
 
   ```bash
   docker compose build --no-cache
   docker compose up --force-recreate
   ```
-
-
-
-
-
